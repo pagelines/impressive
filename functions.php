@@ -1,30 +1,82 @@
 <?php
-// Setup  -- Probably want to keep this stuff... 
 
-/**
- * Hello and welcome to Base! First, lets load the PageLines core so we have access to the functions 
- */	
+// Load Framework //
 require_once( dirname(__FILE__) . '/setup.php' );
-	
-// For advanced customization tips & code see advanced file.
-	//--> require_once(STYLESHEETPATH . "/advanced.php");
-	
-// ====================================================
-// = YOUR FUNCTIONS - Where you should add your code  =
-// ====================================================
+
+class impressiveTheme {
 
 
-// ABOUT HOOKS --------//
-	// Hooks are a way to easily add custom functions and content to PageLines. There are hooks placed strategically throughout the theme 
-	// so that you insert code and content with ease.
+  function __construct() {
+
+    $this->init();
+    $this->options();
+
+  }
+
+  function init() {
 
 
-// ABOUT FILTERS ----------//
+  }
 
-	// Filters allow data modification on-the-fly. Which means you can change something after it was read and compiled from the database,
-	// but before it is shown to your visitor. Or, you can modify something a visitor sent to your database, before it is actually written there.
+  // Draw Welcome Panel
+  function welcome(){
 
-// FILTERS EXAMPLE ---------//
+    ob_start();
+    ?>
+       <div style="font-size:12px;line-height:14px;color:#444;">
+        <p><?php _e('Welcome to Impressive Theme! Please let me know if you have any questions or concerns, and enjoy your product.','impressive');?></p>
+      </div>
+      <div class="row">
+        <div class="span6 zmb" style="text-align:center;">
+          <a href="http://jamesgiroux.ca" target="_blank" class="btn btn-info btn-mini"><i class="icon icon-globe"></i>  <?php _e('Website','impressive');?></a>
+        </div>
+        <div class="span6 zmb" style="text-align:center;">
+          <a href="http://www.pagelines.com/forum/forum/68-store-products/" target="_blank" class="btn btn-info btn-mini"><i class="icon icon-ambulance"></i>  <?php _e('Support','impressive');?></a>
+        </div>
+      </div>
+      <div style="margin-top:20px;color:#444;">
+        <p style="border-bottom:1px solid #ccc;margin:0 0 0.75em;"><strong><?php _e('Overview','impressive');?></strong></p>
+        <p style="font-size:12px;line-height:14px;"><?php _e('Impressive Theme is designed to work with core PageLines sections. To edit sections, click the pencil icon in the top left corner.','impressive');?></p>
+      </div>
+      <div style="margin-top:20px;color:#444;">
+        <p style="border-bottom:1px solid #ccc;margin:0 0 0.75em;"><strong><?php _e('Instructions','impressive');?></strong></p>
+        <p style="font-size:12px;line-height:14px;"><?php _e('In depth instructions are available in the theme folder, or by <a href="/wp-content/themes/impressive/theme_installation_instructions.pdf" target="_blank">clicking here.</a></p>','impressive');?>
+        <ul class="unstyled" style="font-size:12px;line-height:14px;">
+          <li style="margin-bottom:7px;"><strong><?php _e('1.','impressive');?> </strong><?php _e('Activate the theme in Appearance > Themes. Well done!','impressive');?></li>
+          <li style="margin-bottom:7px;"><strong><?php _e('2.','impressive');?> </strong><?php _e('Create a new page called Home.','impressive');?></li>
+          <li style="margin-bottom:7px;"><strong><?php _e('3.','impressive');?> </strong><?php _e('Click <a href="/wp-admin/options-reading.php">here</a> and set your front page to the home page.','impressive');?></li>
+          <li style="margin-bottom:7px;"><strong><?php _e('4.','impressive');?> </strong><?php _e('In the Global Options panel, locate the Import/Export area and click on it.','impressive');?></li>
+          <li style="margin-bottom:7px;"><strong><?php _e('5.','impressive');?> </strong><?php _e('To recreate the demo, click the Child Theme Config Import button.','impressive');?></li>
+          <li style="margin-bottom:7px;"><strong><?php _e('6.','impressive');?> </strong><?php _e('That\'s it! Template and look will all be loaded.  Impressive is a one page theme but create a menu and add more pages if you would like.','impressive');?></li>
+          <li style="margin-bottom:7px;"><strong><?php _e('7.','impressive');?> </strong><?php _e('To edit the main color of the theme, simply change the Link Color in Global Options and your entire theme will change to match.','impressive');?></li>
+        </ul>
+      </div>
+    <?php
+    return ob_get_clean();
+  }
 
-	// The following filter will add the font  Ubuntu into the font array $thefoundry.
-	// This makes the font available to the framework and the user via the admin panel.
+  // Theme Options
+  function options(){
+    $theme_settings = array();
+
+    $theme_settings['impressive_theme_config'] = array(
+       'pos'                  => 50,
+       'name'                 => __('Impressive Theme','impressive'),
+       'icon'                 => 'icon-chevron-sign-up',
+       'opts'                 => array(
+          array(
+                'type'          => 'template',
+                'title'         => __('Welcome to Impressive Theme','impressive'),
+                'template'      => $this->welcome()
+            ),
+       )
+    );
+    pl_add_theme_tab($theme_settings);
+  }
+
+
+}
+
+new impressiveTheme;
+
+add_filter( 'render_css_posix_', '__return_true' ); //Flywheel Support
