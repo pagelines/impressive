@@ -47,7 +47,7 @@ class impressiveTheme {
           <li style="margin-bottom:7px;"><strong><?php _e('3.','impressive');?> </strong><?php _e('Click <a href="/wp-admin/options-reading.php">here</a> and set your front page to the home page.','impressive');?></li>
           <li style="margin-bottom:7px;"><strong><?php _e('4.','impressive');?> </strong><?php _e('In the Global Options panel, locate the Import/Export area and click on it.','impressive');?></li>
           <li style="margin-bottom:7px;"><strong><?php _e('5.','impressive');?> </strong><?php _e('To recreate the demo, click the Child Theme Config Import button.','impressive');?></li>
-          <li style="margin-bottom:7px;"><strong><?php _e('6.','impressive');?> </strong><?php _e('That\'s it! Template and look will all be loaded.  Impressive is a one page theme but create a menu and add more pages if you would like.','impressive');?></li>
+          <li style="margin-bottom:7px;"><strong><?php _e('6.','impressive');?> </strong><?php _e('Click on the Templates tab.  Impressive is a one page theme so find the Home template and load it. That\'s it!','impressive');?></li>
           <li style="margin-bottom:7px;"><strong><?php _e('7.','impressive');?> </strong><?php _e('To edit the main color of the theme, simply change the Link Color in Global Options and your entire theme will change to match.','impressive');?></li>
         </ul>
       </div>
